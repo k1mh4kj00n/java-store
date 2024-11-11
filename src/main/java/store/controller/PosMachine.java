@@ -34,6 +34,7 @@ public class PosMachine {
         products = fileIO.readProducts("src/main/resources/products.md");
         promotions = fileIO.readPromotions("src/main/resources/promotions.md");
     }
+
     public void frontLogic(){
         OutputView.welcomeMsg();
         for(Products p : products){

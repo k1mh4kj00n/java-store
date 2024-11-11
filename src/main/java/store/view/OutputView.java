@@ -35,7 +35,7 @@ public class OutputView {
 
     public static void productMsg(String product, String price, String count, String Event){
         if (Event == null) Event = "";
-        if (count.equals("0")) {
+        if (count.equals("0개")) {
             count = "재고 없음";
             Event = ""; // 재고가 없는 경우 이벤트는 출력하지 않음
         }
