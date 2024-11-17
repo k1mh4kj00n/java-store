@@ -1,16 +1,18 @@
 package store.service;
 
-import store.model.Products;
-import store.model.Promotions;
+import store.model.domain.ProductDomain;
+import store.model.domain.PromotionDomain;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class FileIO {
 
-    public Products[] readProducts(String filePath) {
+    public List<ProductDomain> findAllProducts(String filePath) {
         int index = 0;
         int code = FileConstants.START_PRODUCT_CODE;
         String name;
@@ -19,7 +21,7 @@ public class FileIO {
         String promotion;
         String line;
         String[] data;
-        Products[] products = new Products[countLines(filePath) - FileConstants.HEADER_LINE];
+        List<ProductDomain> products = new ArrayList<>();
 
         try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
             line = null;
@@ -34,7 +36,7 @@ public class FileIO {
                 promotion = data[FileConstants.READ_PRODUCT_PROMOTION];
                 if(promotion.equals("null")) { promotion = null; }
 
-                products[index++] = new Products(code, name, price, quantity, promotion);
+                products.add(new ProductDomain(code, name, price, quantity, promotion));
                 code++;
             }
         } catch (IOException e) {
@@ -42,24 +44,26 @@ public class FileIO {
         }
 
         return products;
+
     }
 
-    public Promotions[] readPromotions(String filePath) {
+    public List<PromotionDomain> findAllPromotions(String filePath) {
         int index = 0;
         int code = FileConstants.START_PROMOTION_CODE;
         String[] data;
-        Promotions[] promotions = new Promotions[countLines(filePath) - FileConstants.HEADER_LINE];
+        List<PromotionDomain> promotions = new ArrayList<>();
 
         try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
             reader.readLine();
             String line = null;
             while ((line = reader.readLine()) != null) {
                 data = line.split(FileConstants.DELIMITER);
-                promotions[index++] = new Promotions(code++, data[FileConstants.READ_NAME],
+                promotions.add(new PromotionDomain(code++, data[FileConstants.READ_NAME],
                         Integer.parseInt(data[FileConstants.READ_PROMOTION_BUY]),
                         Integer.parseInt(data[FileConstants.READ_PROMOTION_GET]),
                         LocalDate.parse(data[FileConstants.READ_PROMOTION_START_DATE]),
-                        LocalDate.parse(data[FileConstants.READ_PROMOTION_END_DATE]));
+                        LocalDate.parse(data[FileConstants.READ_PROMOTION_END_DATE]))
+                );
             }
         } catch (IOException e) {
             System.out.println(e.getMessage());
@@ -67,6 +71,7 @@ public class FileIO {
 
         return promotions;
     }
+
 
     private int countLines(String filePath) {
         int lines = 0;
