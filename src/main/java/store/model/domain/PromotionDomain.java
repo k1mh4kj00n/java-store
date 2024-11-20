@@ -28,7 +28,6 @@ public class PromotionDomain {
         this.get = promotionDto.getGet();
         this.startDate = promotionDto.getStartDate();
         this.endDate = promotionDto.getEndDate();
-
     }
 
     public int getCode() { return code; }

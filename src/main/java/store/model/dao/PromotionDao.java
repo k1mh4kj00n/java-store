@@ -1,5 +1,6 @@
 package store.model.dao;
 
+import store.model.domain.ProductDomain;
 import store.model.domain.PromotionDomain;
 import store.service.FileIO;
 
@@ -13,10 +14,11 @@ public class PromotionDao {
     }
 
     public List<PromotionDomain> findAllPromotions(String filePath) {
-        // 파일에서 프로모션 읽기
+        // 파일에서 상품 읽기
+        return fileIO.findAllPromotions(filePath);
     }
 
-    public void savePromotion(String filePath, PromotionDomain promotion) {
-        // 프로모션 저장
+    public void savePromotion(String filePath, ProductDomain product) {
+        // 상품 저장
     }
 }

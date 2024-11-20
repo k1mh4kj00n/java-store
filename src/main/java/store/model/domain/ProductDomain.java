@@ -25,7 +25,6 @@ public class ProductDomain {
         this.price = productDto.getPrice();
         this.quantity = productDto.getQuantity();
         this.promotion = productDto.getPromotion();
-
     }
 
     public int getCode() { return code; }

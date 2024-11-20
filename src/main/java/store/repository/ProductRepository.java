@@ -1,9 +1,7 @@
 package store.repository;
 
 import store.model.dao.ProductDao;
-import store.model.dao.PromotionDao;
 import store.model.domain.ProductDomain;
-import store.model.domain.PromotionDomain;
 
 import java.util.List;
 

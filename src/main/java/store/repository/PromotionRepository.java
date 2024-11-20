@@ -18,7 +18,7 @@ public class PromotionRepository {
         return promotionDao.findAllPromotions(promotionFilePath);
     }
 
-    public void savePromotion(PromotionDomain promotion) {
-        promotionDao.savePromotion(promotionFilePath, promotion);
-    }
+//    public void savePromotion(PromotionDomain promotion) {
+//        promotionDao.savePromotion(promotionFilePath);
+//    }
 }

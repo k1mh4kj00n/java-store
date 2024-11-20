@@ -72,7 +72,6 @@ public class FileIO {
         return promotions;
     }
 
-
     private int countLines(String filePath) {
         int lines = 0;
         try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
